@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeneriCorp Inc - Enterprise IT Service Desk Knowledge Base</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Smooth transition for accordion arrows */
+        details summary::-webkit-details-marker { display: none; }
+        details summary { list-style: none; }
+        
+        details[open] summary .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* Keyword highlight styling */
+        .highlight {
+            background-color: #fef08a;
+            color: #854d0e;
+            padding: 0 0.15rem;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-50 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo & Brand Title -->
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="w-11 h-11 bg-gradient-to-tr from-sky-500 to-blue-700 rounded-xl flex items-center justify-center shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform duration-150">
+                    <!-- SVG Custom Logo -->
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-xl tracking-tight text-white">GeneriCorp<span class="text-sky-400">.</span></span>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-sky-950 text-sky-300 font-medium border border-sky-800">IT Desk</span>
+                    </div>
+                    <p class="text-xs text-slate-400 hidden sm:block">Global IT Service Portal & Knowledge Base</p>
+                </div>
+            </a>
+
+            <!-- Quick Navigation & Status Badges -->
+            <div class="flex items-center space-x-3 sm:space-x-4 text-xs font-medium">
+                <a href="nope404.html" class="hidden lg:flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700 hover:border-slate-600 hover:text-sky-300 transition">
+                    <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                    <span class="text-slate-300">All Systems Operational</span>
+                </a>
+                <a href="nope404.html" class="hidden sm:inline-block text-slate-300 hover:text-white px-3 py-2 rounded-lg hover:bg-slate-800 transition">My Tickets</a>
+                <a href="nope404.html" class="bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-lg font-medium shadow-sm transition-colors duration-150 flex items-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    <span>Submit Ticket</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Hero & Search Section -->
+    <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white pt-12 pb-16 px-4 sm:px-6 lg:px-8 shadow-inner">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">How can GeneriCorp IT help you today?</h1>
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+                Search our knowledge base for hardware procedures, Webex setup, software access, network guides, and remote work FAQs.
+            </p>
+
+            <!-- Search Bar Input Container -->
+            <div class="relative max-w-2xl mx-auto pt-2">
+                <div class="relative flex items-center">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <input type="text" id="searchInput" 
+                        placeholder="Search by topic, software, error message, or hardware (e.g. 'Webex', 'screen break', 'VPN')..." 
+                        class="w-full pl-11 pr-24 py-4 rounded-xl text-slate-900 bg-white placeholder-slate-400 shadow-xl border-2 border-transparent focus:border-sky-500 focus:outline-none transition text-sm sm:text-base">
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1.5 rounded-md font-medium transition">
+                        Clear
+                    </button>
+                </div>
+                <div class="flex justify-between items-center text-xs text-slate-400 mt-2 px-1">
+                    <span id="searchResultsCount">Showing all 34 help articles</span>
+                    <span>Updated daily by IT Operations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- Controls Bar: Category Pills & Expand/Collapse -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-4 border-b border-slate-200">
+            <!-- Category Filter Pills -->
+            <div class="flex flex-wrap gap-2" id="categoryPills">
+                <button onclick="filterCategory('all')" class="cat-pill active bg-sky-600 text-white px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-sm transition" data-cat="all">All Topics (34)</button>
+                <button onclick="filterCategory('hardware')" class="cat-pill bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-full text-xs font-semibold transition" data-cat="hardware">Hardware (7)</button>
+                <button onclick="filterCategory('webex')" class="cat-pill bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-full text-xs font-semibold transition" data-cat="webex">Webex & Collaboration (6)</button>
+                <button onclick="filterCategory('software')" class="cat-pill bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-full text-xs font-semibold transition" data-cat="software">Software & Apps (7)</button>
+                <button onclick="filterCategory('security')" class="cat-pill bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-full text-xs font-semibold transition" data-cat="security">Security & Access (7)</button>
+                <button onclick="filterCategory('office')" class="cat-pill bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-full text-xs font-semibold transition" data-cat="office">Office & Network (7)</button>
+            </div>
+
+            <!-- Global Accordion Toggle Controls -->
+            <div class="flex items-center space-x-2 shrink-0">
+                <button onclick="toggleAllAccordions(true)" class="text-xs font-medium text-slate-600 hover:text-sky-700 bg-white border border-slate-200 hover:border-slate-300 px-3 py-1.5 rounded-lg shadow-sm transition">
+                    Expand All
+                </button>
+                <button onclick="toggleAllAccordions(false)" class="text-xs font-medium text-slate-600 hover:text-sky-700 bg-white border border-slate-200 hover:border-slate-300 px-3 py-1.5 rounded-lg shadow-sm transition">
+                    Collapse All
+                </button>
+            </div>
+        </div>
+
+        <!-- No Results Message (Hidden by default) -->
+        <div id="noResults" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-sm my-6">
+            <svg class="w-12 h-12 text-slate-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <h3 class="text-lg font-semibold text-slate-800">No matching help documents found</h3>
+            <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">Try checking for spelling errors, using alternate keywords, or clearing your category filters.</p>
+            <button onclick="clearSearch()" class="mt-4 inline-flex items-center px-4 py-2 bg-sky-600 text-white text-xs font-medium rounded-lg hover:bg-sky-700 transition">Reset Search & Filters</button>
+        </div>
+
+        <div id="faqContainer" class="space-y-10">
+
+            <!-- CATEGORY 1: HARDWARE & EQUIPMENT -->
+            <section class="category-block" data-category="hardware">
+                <div class="flex items-center space-x-3 mb-4 pb-2 border-b-2 border-sky-500">
+                    <div class="p-2 bg-sky-100 rounded-lg text-sky-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900">1. Hardware & Laptop Equipment</h2>
+                </div>
+
+                <div class="space-y-3">
+                    
+                    <!-- FAQ Item 1 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="hardware">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I request an upgraded or replacement laptop?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>GeneriCorp laptops are eligible for a standard hardware refresh every <strong>36 months</strong>. If your current workstation is under 3 years old but experiencing chronic technical failures, manager approval is required prior to replacement.</p>
+                            <ol class="list-decimal pl-5 space-y-1.5 font-medium text-slate-700">
+                                <li>Log into the <strong>GeneriCorp IT Service Portal</strong> using your SSO credentials.</li>
+                                <li>Navigate to <strong>Service Catalog &gt; Hardware Requests &gt; Laptop Refresh</strong>.</li>
+                                <li>Select your standard tier profile: <em>Standard Business Tier (Dell Latitude)</em> or <em>Developer/Creative Tier (MacBook Pro 16")</em>.</li>
+                                <li>Select your cost center manager for automatic workflow routing.</li>
+                            </ol>
+                            <div class="bg-sky-50 border-l-4 border-sky-500 p-3 text-xs text-sky-900 rounded-r-lg">
+                                <strong>Delivery SLA:</strong> Standard shipping takes 3-5 business days domestically. Express 24-hour shipping is available for critical project emergencies with VP sign-off.
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 2 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="hardware">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">What should I do if my laptop screen breaks or physically damages?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>All GeneriCorp hardware is covered under corporate <strong>Complete Care Accidental Damage Protection</strong>. Do not attempt self-repair or third-party repair shops, as this voids corporate warranties.</p>
+                            <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                <li>Immediately report the damage by creating a ticket under <strong>Incident &gt; Accidental Damage Report</strong>.</li>
+                                <li>If working at an office site, bring the damaged device directly to the <strong>IT Tech Bar</strong> on Floor 3 for a loaner exchange.</li>
+                                <li>If remote, IT logistics will send a pre-padded return box with a prepaid FedEx label along with a temporary loaner unit.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 3 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="hardware">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I request a second monitor or desktop accessories?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Full-time remote and hybrid employees are entitled to standard ergonomic desktop peripherals funded by GeneriCorp IT support budgets.</p>
+                            <p>Standard approved catalog items include:</p>
+                            <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                <li>Dual 27-inch 4K Dell Monitors &amp; USB-C Universal Docking Station</li>
+                                <li>Logitech HD Webcams &amp; Wireless Headsets</li>
+                                <li>DisplayPort to HDMI Adapters and Dongles</li>
+                            </ul>
+                            <p>Submit a request via <strong>Service Catalog &gt; Peripheral Procurement</strong>. Orders under $300 do not require line manager pre-approval.</p>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 4 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="hardware">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I return my company-issued mobile phone or hardware?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>When offboarding, transferring roles, or upgrading your corporate smartphone/hardware, all original equipment must be returned within 10 business days.</p>
+                            <ol class="list-decimal pl-5 space-y-1.5 text-slate-700">
+                                <li><strong>Turn OFF Apple 'Find My' / Activation Lock</strong> or Google Device Protection before powering down the mobile device. (Critical step!)</li>
+                                <li>Backup any non-sensitive personal photos or contacts if allowed under compliance policy.</li>
+                                <li>Go to <strong>IT Portal &gt; Asset Return Ticket</strong> to generate a prepaid UPS shipping label.</li>
+                                <li>Include device, charger, and docking hardware inside the return package.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 5 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="hardware">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">What do I do if my laptop battery dies quickly or won't charge?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Batteries lose capacity over time. First, test your charger with another wall outlet and verify the power indicator light on the adapter cable.</p>
+                            <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                <li><strong>Windows Users:</strong> Run <code>powercfg /batteryreport</code> in Command Prompt to generate a battery health diagnostic file.</li>
+                                <li><strong>Mac Users:</strong> Hold Option and click the Battery icon in your top menu bar to view battery status (Normal vs Service Recommended).</li>
+                            </ul>
+                            <p>If health drops below 70%, open a ticket under <strong>Hardware &gt; Battery Replacement Request</strong> for a free battery exchange.</p>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 6 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="hardware">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I request an ergonomic keyboard, mouse, or desk setup?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>GeneriCorp offers specialized ergonomic hardware (split keyboards, vertical mice, monitor riser arms) via our Ergonomic Support Initiative.</p>
+                            <p>To request ergonomic gear:</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Complete the 10-minute online <strong>EHS Ergonomic Self-Assessment</strong> in Workday.</li>
+                                <li>Submit the assessment certificate attached to a ticket under <strong>Service Catalog &gt; Ergonomic Peripherals</strong>.</li>
+                                <li>Hardware will be delivered to your assigned office desk or home address within 3 days.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 7 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="hardware">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I request a replacement charger or laptop dock?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Replacement 65W/130W USB-C chargers and Thunderbolt docking stations can be requested directly without manager approval in cases of loss or malfunction.</p>
+                            <p>Visit <strong>IT Portal &gt; Quick Replacement Catalog</strong> and specify whether you require standard USB-C Power Delivery, MagSafe 3 (Mac), or Dell Thunderbolt Docking Stations.</p>
+                        </div>
+                    </details>
+
+                </div>
+            </section>
+
+            <!-- CATEGORY 2: WEBEX & COLLABORATION -->
+            <section class="category-block" data-category="webex">
+                <div class="flex items-center space-x-3 mb-4 pb-2 border-b-2 border-sky-500">
+                    <div class="p-2 bg-sky-100 rounded-lg text-sky-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900">2. Webex & Collaboration Tools</h2>
+                </div>
+
+                <div class="space-y-3">
+
+                    <!-- FAQ Item 8 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="webex">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How to install Webex on your workstation?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Cisco Webex is the primary enterprise video conferencing platform at GeneriCorp. Standard installations do not require local administrator rights.</p>
+                            <ol class="list-decimal pl-5 space-y-1.5 text-slate-700">
+                                <li>Open <strong>GeneriCorp Software Center</strong> (Windows) or <strong>Self Service App</strong> (macOS).</li>
+                                <li>Search for <strong>Cisco Webex Meetings &amp; Messaging</strong>.</li>
+                                <li>Click <strong>Install</strong>. The process completes in 2 minutes.</li>
+                                <li>Launch Webex and log in using your full company email (e.g. <code>username@genericorp.com</code>). You will be redirected to Okta SSO for authentication.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 9 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="webex">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">Webex FAQ 1: How do I schedule a Webex meeting and add a personal room link in Outlook?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>You can schedule Webex meetings directly from Microsoft Outlook via the official Webex Productivity Tools plugin:</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>In Outlook Calendar, click <strong>New Meeting</strong>.</li>
+                                <li>In the top Outlook ribbon menu, click <strong>Add Webex Meeting</strong> or <strong>Add Personal Room</strong>.</li>
+                                <li>The meeting location and video link details (<code>genericorp.webex.com/meet/yourusername</code>) will automatically populate in the invitation body.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 10 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="webex">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">Webex FAQ 2: How do I share my screen, specific windows, or audio during a Webex call?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>During an active meeting, click the central <strong>Share Content</strong> button (square icon with an up arrow):</p>
+                            <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                <li><strong>Entire Screen:</strong> Displays everything visible on your selected monitor.</li>
+                                <li><strong>Specific Application Window:</strong> Hides personal notifications, desktop background, and other open apps.</li>
+                                <li><strong>Sharing Video/Audio:</strong> Ensure you check the box labeled <em>"Optimize for motion and video"</em> and enable <em>"Share computer audio"</em> at the top left of the share menu.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 11 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="webex">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">Webex FAQ 3: How do I enable virtual backgrounds, noise removal, or closed captions in Webex?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Enhance meeting clarity and privacy using built-in AI tools:</p>
+                            <ul class="list-disc pl-5 space-y-1.5 text-slate-700">
+                                <li><strong>Virtual Backgrounds:</strong> Before joining or during a call, click <em>Change Background</em> on your video preview screen and select a GeneriCorp branded corporate background or Blur effect.</li>
+                                <li><strong>Webex Smart Audio Noise Removal:</strong> Go to <em>Audio Settings &gt; Webex Smart Audio</em> and enable <strong>Webex AI Noise Removal</strong> to filter out keyboard typing, dogs, or HVAC noise.</li>
+                                <li><strong>Live Closed Captions:</strong> Click the <strong>CC</strong> button on the bottom left corner to display real-time speech-to-text subtitles.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 12 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="webex">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">Webex FAQ 4: How do I record a Webex meeting and access cloud recordings afterwards?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Only meeting hosts or co-hosts can initiate recording:</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Click the round red <strong>Record</strong> button in your control panel.</li>
+                                <li>Select <strong>Record in Cloud</strong> (recommended for automatic transcript generation).</li>
+                                <li>Once the meeting concludes, the MP4 recording link and automated transcript will be emailed to you within 30 minutes and available at <code>genericorp.webex.com</code> under <strong>Recordings</strong>.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 13 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="webex">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">Webex FAQ 5: What should I do if my audio or video freezes during a Webex meeting?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>If you experience lag, latency, or choppy audio:</p>
+                            <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                <li>Switch audio connection from computer VoIP to <strong>Call Me</strong> (Webex will call your phone number directly).</li>
+                                <li>Disable incoming video feeds by switching view to <em>Audio Only Mode</em> or turning off high-definition self-video.</li>
+                                <li>Disconnect from high-bandwidth non-essential applications or test your VPN connection.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                </div>
+            </section>
+
+            <!-- CATEGORY 3: SOFTWARE & PRODUCTIVITY -->
+            <section class="category-block" data-category="software">
+                <div class="flex items-center space-x-3 mb-4 pb-2 border-b-2 border-sky-500">
+                    <div class="p-2 bg-sky-100 rounded-lg text-sky-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900">3. Software & Productivity Applications</h2>
+                </div>
+
+                <div class="space-y-3">
+
+                    <!-- FAQ Item 14 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="software">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How to save a Word document as a PDF or lock it as Read-Only for safe external sharing?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>To prevent accidental modifications when distributing documents to external partners, use either PDF export or Read-Only protection:</p>
+                            <p class="font-semibold text-slate-800">Method 1: Exporting as PDF (Recommended)</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>In Microsoft Word, click <strong>File &gt; Export &gt; Create PDF/XPS Document</strong>.</li>
+                                <li>Choose your file destination and click <strong>Publish</strong>.</li>
+                            </ol>
+                            <p class="font-semibold text-slate-800">Method 2: Making Word File Read-Only</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Click <strong>File &gt; Info &gt; Protect Document</strong>.</li>
+                                <li>Select <strong>Always Open Read-Only</strong> or <strong>Restrict Editing</strong> to prevent layout changes.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 15 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="software">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How to update your Google Chrome browser to the latest secure version?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>GeneriCorp security policy requires web browsers to be updated regularly to apply zero-day vulnerability patches.</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Open Google Chrome.</li>
+                                <li>Click the <strong>Three Dots menu</strong> in the top-right corner.</li>
+                                <li>Hover over <strong>Help</strong> and click <strong>About Google Chrome</strong>.</li>
+                                <li>Chrome will automatically check for and download updates. Click <strong>Relaunch</strong> to finish installing.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 16 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="software">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I clear my web browser cache and cookies (Chrome, Edge, Safari)?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Clearing browser cache resolves 90% of web portal login loops and outdated page display issues:</p>
+                            <p>Shortcut for Chrome and Edge: Press <code>Ctrl + Shift + Delete</code> (Windows) or <code>Cmd + Shift + Delete</code> (Mac).</p>
+                            <ul class="list-disc pl-5 space-y-1 text-slate-700">
+                                <li>Set Time Range to <strong>All Time</strong>.</li>
+                                <li>Check boxes for <em>Cached images and files</em> and <em>Cookies and other site data</em>.</li>
+                                <li>Click <strong>Clear Data</strong> and restart browser.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 17 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="software">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I request new software or software licenses through the Service Catalog?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Unapproved software installation is restricted by endpoint management software.</p>
+                            <p>To request licensed software (e.g. Adobe Creative Cloud, Figma, MS Visio, Tableau):</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Visit <strong>IT Portal &gt; Software Access Request</strong>.</li>
+                                <li>Search for the required software title and select your business justification.</li>
+                                <li>Once cost-center approval is confirmed, the license auto-assigns within 2 hours and appears in your Software Center for installation.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 18 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="software">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I fix Microsoft Outlook when it fails to send/receive or gets stuck on 'Syncing'?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>When Outlook stops updating or gets stuck in offline status:</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Verify your Internet connection and confirm VPN status if remote.</li>
+                                <li>Click the <strong>Send / Receive</strong> tab at the top of Outlook and toggle <strong>Work Offline</strong> on and off.</li>
+                                <li>If issues persist, launch Outlook in Safe Mode by holding <code>Ctrl</code> while opening Outlook, or use Outlook Web Access (<code>outlook.office.com</code>) as a temporary workaround.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 19 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="software">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I restore a previous version of a file from OneDrive or SharePoint?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>GeneriCorp cloud storage preserves 500 automatic historical revisions for all files:</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Right-click the file in Windows File Explorer or SharePoint web interface.</li>
+                                <li>Select <strong>Version History</strong>.</li>
+                                <li>Browse timestamped versions, click the three dots next to the desired historical timestamp, and select <strong>Restore</strong>.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 20 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="software">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I install company-approved mobile apps on my mobile device?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>GeneriCorp enforces Mobile Device Management (MDM) container security:</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Download the <strong>Microsoft Intune Company Portal</strong> app from iOS App Store or Google Play Store.</li>
+                                <li>Log in using your GeneriCorp SSO credentials.</li>
+                                <li>Select approved apps (Outlook, Webex, Teams, Workday) from the internal corporate store to install them in an encrypted container.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                </div>
+            </section>
+
+            <!-- CATEGORY 4: SECURITY, ACCESS & CREDENTIALS -->
+            <section class="category-block" data-category="security">
+                <div class="flex items-center space-x-3 mb-4 pb-2 border-b-2 border-sky-500">
+                    <div class="p-2 bg-sky-100 rounded-lg text-sky-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900">4. Security, Access &amp; Credentials</h2>
+                </div>
+
+                <div class="space-y-3">
+
+                    <!-- FAQ Item 21 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="security">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I reset my Windows / GeneriCorp network password?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Passwords expire every 90 days and must be at least 14 characters in length.</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Navigate to <strong>https://password.genericorp.com</strong> from any device.</li>
+                                <li>Click <strong>Self-Service Password Reset</strong>.</li>
+                                <li>Authenticate via Okta MFA push notification on your smartphone.</li>
+                                <li>Enter your new compliant password. Updates sync across Windows, Mac, Email, and VPN within 60 seconds.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 22 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="security">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I set up or transfer Okta / Duo Multi-Factor Authentication (MFA) to a new phone?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>If you purchase a new personal or corporate mobile device:</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Before wiping your old phone, log into <code>genericorp.okta.com</code>.</li>
+                                <li>Click your user profile name at top right &gt; <strong>Settings &gt; Extra Verification</strong>.</li>
+                                <li>Click <strong>Edit Profile</strong>, then click <strong>Add New Phone / Set Up Okta Verify</strong> to generate a QR registration code for your new phone.</li>
+                            </ol>
+                            <p><em>Note: If you no longer have access to your old phone, contact the IT Hotline for identity verification.</em></p>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 23 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="security">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I report a suspicious phishing email or security threat?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Do not click any embedded links or open attachments in suspicious emails.</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>In Microsoft Outlook, select the email.</li>
+                                <li>Click the <strong>Report Phish</strong> button in the Outlook toolbar menu.</li>
+                                <li>The email will automatically be quarantined and submitted to the Cyber Security Operations Center (SOC) for analysis.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 24 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="security">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I connect to the GeneriCorp Corporate VPN when working remotely?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Remote workers require GlobalProtect VPN to access internal file shares and legacy applications:</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Launch <strong>GlobalProtect VPN</strong> client from system tray icon (bottom right).</li>
+                                <li>Portal address: <code>vpn.genericorp.com</code>.</li>
+                                <li>Click <strong>Connect</strong> and approve Okta MFA push on your smartphone.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 25 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="security">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">What should I do if my account gets locked out after multiple failed password attempts?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Accounts automatically lock for 15 minutes after 5 consecutive incorrect attempts to protect against brute-force attacks.</p>
+                            <p>You can wait 15 minutes for automatic unlock, or perform an instant unlock at <code>password.genericorp.com</code> by choosing <strong>Unlock My Account</strong>.</p>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 26 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="security">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I request privileged or admin rights on my corporate workstation?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Permanent administrator rights are restricted due to Zero Trust security policies.</p>
+                            <p>For developer tasks or custom driver setup, request temporary 24-hour admin access via <strong>MakeMeAdmin App</strong> (Windows) or <strong>Privilege Management Tool</strong> (Mac) installed in your start menu.</p>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 27 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="security">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I request access to a shared inbox, distribution list, or network drive?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Submit a request via <strong>IT Portal &gt; Access Governance &gt; Resource Permission</strong>.</p>
+                            <p>You must specify the exact folder path or email address along with business justification. Requests route automatically to the designated resource owner for approval.</p>
+                        </div>
+                    </details>
+
+                </div>
+            </section>
+
+            <!-- CATEGORY 5: OFFICE ENVIRONMENT & NETWORK -->
+            <section class="category-block" data-category="office">
+                <div class="flex items-center space-x-3 mb-4 pb-2 border-b-2 border-sky-500">
+                    <div class="p-2 bg-sky-100 rounded-lg text-sky-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900">5. Office Environment, Printers &amp; Wi-Fi</h2>
+                </div>
+
+                <div class="space-y-3">
+
+                    <!-- FAQ Item 28 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="office">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I connect to the secure GeneriCorp Wi-Fi network in the office?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Corporate laptops automatically authenticate to <strong>GeneriCorp-Secure Wi-Fi</strong> using device certificate security.</p>
+                            <p>For mobile phones or non-managed corporate devices, select SSID: <code>GeneriCorp-Corporate</code> and log in with your network domain credentials.</p>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 29 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="office">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I map a corporate network printer on Windows or macOS?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>GeneriCorp uses <strong>Follow-Me-Print</strong> Cloud Printing:</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Print your document and select printer queue: <code>\\printserver\SecurePrint-Color</code>.</li>
+                                <li>Walk to any physical office printer/copier.</li>
+                                <li>Swipe your employee badge on the card reader to release and print your job.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 30 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="office">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">What should I do if a printer shows paper jam or toner replacement errors?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Floor printers are serviced daily by Facilities. If an urgent error occurs, scan the QR code sticker located on the front panel of the printer to auto-submit a service ticket to Facilities.</p>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 31 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="office">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I book a desk or meeting room using the GeneriCorp Workspace Portal?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Desk reservation is mandatory prior to entering corporate office facilities:</p>
+                            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
+                                <li>Open <code>workspace.genericorp.com</code> or launch the Mobile Workplace App.</li>
+                                <li>Select building location, floor, and date.</li>
+                                <li>Pick an available desk on the floorplan map and click <strong>Reserve Desk</strong>.</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 32 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="office">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I request temporary guest Wi-Fi credentials for external visitors?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>External contractors and guests can connect to <code>GeneriCorp-Guest</code> network.</p>
+                            <p>Visitors complete a self-registration landing page with sponsor email (e.g., your email). You will receive an instant 1-click authorization prompt to grant them 24-hour guest access.</p>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 33 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="office">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">How do I report an office AV / Conference Room TV malfunction?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>For urgent in-person meeting issues, tap the <strong>Help Button</strong> on the conference room touch controller panel. An AV technician will be dispatched to the room within 5 minutes.</p>
+                        </div>
+                    </details>
+
+                    <!-- FAQ Item 34 -->
+                    <details class="faq-item group bg-white border border-slate-200 rounded-xl shadow-sm hover:border-slate-300 transition-all overflow-hidden" data-category="office">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer select-none font-semibold text-slate-800 hover:text-sky-700">
+                            <span class="faq-question text-base">What are the IT Help Desk hours and emergency contact channels?</span>
+                            <span class="ml-4 shrink-0 p-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition">
+                                <svg class="w-5 h-5 accordion-icon transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="faq-answer px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 space-y-3">
+                            <p>Standard Ticket Support: 24/7/365 online submission via portal.</p>
+                            <p>Live Phone Support: +1 (800) 555-GENERI (Ext 4357) — Mon-Fri 6:00 AM - 9:00 PM EST.</p>
+                            <p>Emergency Critical Incident Escalations: Available 24/7 for Severity 1 Outages.</p>
+                        </div>
+                    </details>
+
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-sm mt-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <div class="flex items-center space-x-2 text-white font-bold text-lg mb-3">
+                    <span class="text-sky-400">GeneriCorp Inc.</span>
+                    <span class="text-xs bg-slate-800 px-2 py-0.5 rounded text-slate-300">IT Ops</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Providing global workforce technology enablement, infrastructure management, and secure corporate IT operations.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="index.html" class="hover:text-sky-400 transition">Service Portal Home</a></li>
+                    <li><a href="nope404.html" class="hover:text-sky-400 transition">Submit Ticket</a></li>
+                    <li><a href="nope404.html" class="hover:text-sky-400 transition">System Status Dashboard</a></li>
+                    <li><a href="nope404.html" class="hover:text-sky-400 transition">VPN Gateway Portal</a></li>
+                    <li><a href="nope404.html" class="hover:text-sky-400 transition">Okta SSO Management</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Need Support?</h4>
+                <p class="text-xs text-slate-400 mb-3">Reach out through our internal ticket queue or phone line:</p>
+                <div class="text-xs text-slate-200 font-mono space-y-1 bg-slate-800 p-3 rounded-lg border border-slate-700">
+                    <div>Email: support@genericorp.com</div>
+                    <div>Phone: +1 (800) 555-4357</div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 GeneriCorp Inc. Internal Knowledge Base Document Reference KB-2026-v4.2. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Interactive Search and Accordion Script -->
+    <script>
+        let currentCategory = 'all';
+
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+        const searchResultsCount = document.getElementById('searchResultsCount');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const categoryBlocks = document.querySelectorAll('.category-block');
+        const noResults = document.getElementById('noResults');
+
+        // Real-time Search Event Listener
+        searchInput.addEventListener('input', function() {
+            filterContent();
+        });
+
+        // Filter Function handling keyword search and category selection
+        function filterContent() {
+            const query = searchInput.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            // Toggle Clear Button
+            if (query.length > 0) {
+                clearSearchBtn.classList.remove('hidden');
+            } else {
+                clearSearchBtn.classList.add('hidden');
+            }
+
+            faqItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                const questionText = item.querySelector('.faq-question').textContent;
+                const answerText = item.querySelector('.faq-answer').textContent;
+                const fullText = (questionText + " " + answerText).toLowerCase();
+
+                const matchesCategory = (currentCategory === 'all' || itemCategory === currentCategory);
+                const matchesQuery = (query === '' || fullText.includes(query));
+
+                if (matchesCategory && matchesQuery) {
+                    item.classList.remove('hidden');
+                    visibleCount++;
+
+                    // Automatically expand matching accordions when user types a query
+                    if (query.length > 1) {
+                        item.setAttribute('open', 'true');
+                    }
+                } else {
+                    item.classList.add('hidden');
+                    // Collapse if hidden
+                    if (query === '') {
+                        item.removeAttribute('open');
+                    }
+                }
+            });
+
+            // Handle Category Block Visibility (hide category title if no children match)
+            categoryBlocks.forEach(block => {
+                const blockCategory = block.getAttribute('data-category');
+                const visibleInBlock = block.querySelectorAll('.faq-item:not(.hidden)').length;
+
+                if ((currentCategory === 'all' || currentCategory === blockCategory) && visibleInBlock > 0) {
+                    block.classList.remove('hidden');
+                } else {
+                    block.classList.add('hidden');
+                }
+            });
+
+            // No results state
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            // Update Counter Text
+            searchResultsCount.textContent = `Showing ${visibleCount} of 34 help articles`;
+        }
+
+        // Category Filter Pill selection
+        function filterCategory(category) {
+            currentCategory = category;
+            
+            // Update active state on buttons
+            document.querySelectorAll('.cat-pill').forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                    btn.classList.add('bg-sky-600', 'text-white', 'shadow-sm');
+                } else {
+                    btn.classList.remove('bg-sky-600', 'text-white', 'shadow-sm');
+                    btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                }
+            });
+
+            filterContent();
+        }
+
+        // Clear Search
+        function clearSearch() {
+            searchInput.value = '';
+            filterCategory('all');
+        }
+
+        // Global Expand / Collapse All Accordions
+        function toggleAllAccordions(expand) {
+            faqItems.forEach(item => {
+                if (!item.classList.contains('hidden')) {
+                    if (expand) {
+                        item.setAttribute('open', 'true');
+                    } else {
+                        item.removeAttribute('open');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

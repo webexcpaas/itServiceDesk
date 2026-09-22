@@ -30,8 +30,8 @@ jobs:
           APIKEY: ${{ secrets.APIKEY }}
           SERVICEKEY: ${{ secrets.SERVICEKEY }}
         run: |
-          sed -i "s|{{apiKey}}|$APIKEY|g" index.html
-          sed -i "s|{{serviceKey}}|$SERVICEKEY|g" index.html
+          sed -i "s|{{apiKey}}|$APIKEY|g" reset-password.html
+          sed -i "s|{{serviceKey}}|$SERVICEKEY|g" reset-password.html
 
       - name: Setup Pages
         uses: actions/upload-pages-artifact@v3
